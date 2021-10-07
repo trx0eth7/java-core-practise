@@ -1,4 +1,4 @@
-package com.trx0eth7.practise.blocking;
+package com.trx0eth7.practise.blocking.command;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
