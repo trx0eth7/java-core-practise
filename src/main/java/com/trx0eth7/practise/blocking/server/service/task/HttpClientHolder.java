@@ -1,4 +1,4 @@
-package com.trx0eth7.practise.blocking;
+package com.trx0eth7.practise.blocking.server.service.task;
 
 import java.net.http.HttpClient;
 import java.time.Duration;

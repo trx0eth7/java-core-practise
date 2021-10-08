@@ -1,4 +1,4 @@
-package com.trx0eth7.practise.blocking;
+package com.trx0eth7.practise.blocking.server;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -6,8 +6,10 @@ import com.google.gson.JsonSyntaxException;
 import com.trx0eth7.practise.blocking.command.Command;
 import com.trx0eth7.practise.blocking.command.CommandType;
 import com.trx0eth7.practise.blocking.exception.ServerInitializationException;
-import com.trx0eth7.practise.blocking.service.TaskService;
-import com.trx0eth7.practise.blocking.service.impl.DefaultTaskService;
+import com.trx0eth7.practise.blocking.message.MessageRecipient;
+import com.trx0eth7.practise.blocking.message.PrintWriterRecipient;
+import com.trx0eth7.practise.blocking.server.service.TaskService;
+import com.trx0eth7.practise.blocking.server.service.impl.DefaultTaskService;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -23,7 +25,7 @@ import java.util.List;
  */
 public class TaskServer {
     private final Object servicesLock = new Object();
-    private final List<TaskService<?>> services = new ArrayList<>();
+    private final List<TaskService> services = new ArrayList<>();
 
     private volatile boolean running;
 
@@ -43,13 +45,13 @@ public class TaskServer {
         services.add(new DefaultTaskService());
     }
 
-    public void addService(TaskService<?> service) {
+    public void addService(TaskService service) {
         synchronized (servicesLock) {
             services.add(service);
         }
     }
 
-    public void removeService(TaskService<?> service) {
+    public void removeService(TaskService service) {
         synchronized (servicesLock) {
             services.remove(service);
         }
@@ -78,7 +80,7 @@ public class TaskServer {
                  var out = new PrintWriter(socket.getOutputStream());
             ) {
                 var text = in.readLine();
-                tryHandleCommand(text, out);
+                tryHandleCommand(text, new PrintWriterRecipient(out));
             } catch (SocketTimeoutException e) {
                 // TODO
             } catch (IOException e) {
@@ -87,7 +89,7 @@ public class TaskServer {
         }
     }
 
-    private void tryHandleCommand(String commandAsText, PrintWriter sender) {
+    private void tryHandleCommand(String commandAsText, MessageRecipient sender) {
         var command = parseCommand(commandAsText);
 
         for (var service : services) {

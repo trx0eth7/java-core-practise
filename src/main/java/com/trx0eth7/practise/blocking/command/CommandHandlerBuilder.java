@@ -1,17 +1,25 @@
 package com.trx0eth7.practise.blocking.command;
 
-import java.util.function.Consumer;
+import com.trx0eth7.practise.blocking.message.MessageRecipient;
+
+import java.util.function.BiConsumer;
 
 /**
  * @author vasilev
  */
-public class CommandHandlerBuilder {
+public final class CommandHandlerBuilder {
 
     private CommandHandler head;
     private CommandHandler tail;
 
+    private CommandHandlerBuilder() {
+    }
 
-    public CommandHandlerBuilder match(CommandType commandType, Consumer<String> handler) {
+    public static CommandHandlerBuilder create() {
+        return new CommandHandlerBuilder();
+    }
+
+    public CommandHandlerBuilder match(CommandType commandType, BiConsumer<MessageRecipient, String> handler) {
         addMatcher(new CommandHandler(commandType, handler));
         return this;
     }

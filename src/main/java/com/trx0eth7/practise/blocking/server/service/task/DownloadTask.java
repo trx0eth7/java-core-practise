@@ -1,6 +1,4 @@
-package com.trx0eth7.practise.blocking.service.task;
-
-import com.trx0eth7.practise.blocking.HttpClientHolder;
+package com.trx0eth7.practise.blocking.server.service.task;
 
 import java.net.URI;
 import java.net.http.HttpRequest;

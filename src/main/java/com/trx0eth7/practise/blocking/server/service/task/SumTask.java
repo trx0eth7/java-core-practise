@@ -1,4 +1,4 @@
-package com.trx0eth7.practise.blocking.service.task;
+package com.trx0eth7.practise.blocking.server.service.task;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.RecursiveTask;

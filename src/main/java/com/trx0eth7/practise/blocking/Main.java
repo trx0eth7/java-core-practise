@@ -1,7 +1,8 @@
 package com.trx0eth7.practise.blocking;
 
-import com.trx0eth7.practise.blocking.service.impl.ComputingTaskService;
-import com.trx0eth7.practise.blocking.service.impl.WebContentTaskService;
+import com.trx0eth7.practise.blocking.server.TaskServer;
+import com.trx0eth7.practise.blocking.server.service.impl.ComputingTaskService;
+import com.trx0eth7.practise.blocking.server.service.impl.WebContentTaskService;
 
 /**
  * @author vasilev

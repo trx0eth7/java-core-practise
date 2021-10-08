@@ -1,6 +1,6 @@
 package com.trx0eth7.practise.blocking;
 
-import com.trx0eth7.practise.blocking.service.WebCrawlerService;
+import com.trx0eth7.practise.blocking.server.service.WebCrawlerService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;

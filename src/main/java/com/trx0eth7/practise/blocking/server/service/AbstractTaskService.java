@@ -1,4 +1,4 @@
-package com.trx0eth7.practise.blocking.service;
+package com.trx0eth7.practise.blocking.server.service;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -9,7 +9,7 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * @author vasilev
  */
-public abstract class AbstractTaskService<T> implements TaskService<T> {
+public abstract class AbstractTaskService<T> implements TaskService {
     protected ExecutorService executor;
     protected Map<Long, Future<T>> tasks = new ConcurrentHashMap<>();
     protected AtomicLong taskCounter = new AtomicLong();
